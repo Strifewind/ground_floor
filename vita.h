@@ -1,7 +1,7 @@
 #ifndef VITA_H
 #define VITA_H
 
-const int VITA_SIZE = 3;
+const char DATA_FILE[] = "vita.toml";
 
 struct Date {
   int day;
@@ -10,33 +10,54 @@ struct Date {
 };
 
 struct Summa {
-  char company[];
-  char lastPositionHeld[];
+  char *company;
+  char *position;
   Date startDate;
   Date endDate;
-  char otherPositionsHeld[];
-  char dailyTasks[];
-  char jobDescription[];
-  char techStack[];
+  Summa *next;
 };
 
+// The summa should be a linked list of Summa struct nodes
+// The class vita will init the list and summa's
+// hold definitions on how to list or display the summa's
+//
+// The Skills need to be a dynamic array of characters
+// The biog is a single block of char "text"
 class Vita {
   private:
-    Summa * summas;
-    int numSumma;
-    char skills[];
-    char biog[];
+    Summa *head;
+
+    int numSkills;
+    int skillCap;
+    char **skills;
+    char *biog;
+    char *name;
+
+    void increaseSize();
+    void clear();
+    void formatDate(const Date &d, char buffer[]) const;
 
   public:
     Vita();
     ~Vita();
+    void reset();
 
-    void addSumma();
+    void addName(const char name[]);
+    void addBio(const char bio[]);
+
+    bool addSkill(const char skill[]);
+
+    void addSumma(const char company[],
+                  const char position[],
+                  const Date &start,
+                  const Date &end);
+    
     void displaySumma();
-    void printSumma();
-    void increaseSize();
+    void displaySkills();
+    void display();
 
-    void loadFile();
-    void saveFile();
+    //void exportToTex(const char templateFile[], const char outFile[]) const;
+    void saveToToml(const char filename[]) const;
+    void loadFromToml(const char filename[]);
 };
 #endif
