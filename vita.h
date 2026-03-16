@@ -52,11 +52,14 @@ class Vita {
                   const Date &start,
                   const Date &end);
     
+    bool hasName() const { return name != nullptr; }
+    bool hasBio()  const { return biog != nullptr; }
+
     void displaySumma();
     void displaySkills();
     void display();
 
-    //void exportToTex(const char templateFile[], const char outFile[]) const;
+    void exportToTex(const char templateFile[], const char outFile[]) const;
     void saveToToml(const char filename[]) const;
     void loadFromToml(const char filename[]);
 };

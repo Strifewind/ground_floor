@@ -173,7 +173,7 @@ void Vita::displaySumma() {
 
   Summa *current = head;
   while (current != nullptr) {
-    std::cout << "Company:  " << current->company  << "\n"
+    std::cout << "\nCompany:  " << current->company  << "\n"
               << "Position: " << current->position << "\n"
               << "Start: "
               << current->startDate.month << "/"

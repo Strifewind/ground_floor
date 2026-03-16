@@ -16,14 +16,22 @@ void getJob(Vita &vita);
 void getSkills(Vita &vita);
 
 
+const char PATH_TO_TEMPLATE[] = "./template/template.tex";
+const char PATH_TO_OUTPUT[] = "SampleResume.tex";
+
 int main() {
 
   printIntro();
   Vita vitas;
   bool isRunning = true;
+ 
+  if (!vitas.hasName()) {
+    getName(vitas);
+  }
 
-  getName(vitas);
-  getBio(vitas);
+  if (!vitas.hasBio()) {
+    getBio(vitas);
+  }
 
   while (isRunning) {
 
@@ -44,14 +52,16 @@ int main() {
       case 3:
 
         vitas.displaySumma();
+        vitas.displaySkills();
         break;
 
       case 4:
 
-        vitas.displaySkills();
+        vitas.exportToTex(PATH_TO_TEMPLATE, PATH_TO_OUTPUT);
         break;
 
       case 5:
+
         isRunning = false;
         printOutro();
         break;
@@ -70,7 +80,7 @@ void printIntro() {
   std::cout << "\t=== Resume Builder ===\n"
             << "Using groud floor enter your skills and biography, provide previous \n"
             << "job histories to store.\n" << "\n Use tex template to print \n"
-            << "doc with formatted text." << std::endl;
+            << "doc with formatted text.\n" << std::endl;
 }
 
 
@@ -79,11 +89,11 @@ void printIntro() {
  */
 void printMenu() {
 
-  std::cout << "--- Menu options ---\n"
+  std::cout << "\n--- Menu options ---\n"
             << "  1) Add new Job details.\n"
             << "  2) Add skills to list.\n"
-            << "  3) Display vita.\n"
-            << "  4) Display skills.\n"
+            << "  3) Display jobs and skills.\n"
+            << "  4) Create tex template.\n"
             << "  5) Quit\n" << std::endl;
 }
 
@@ -93,8 +103,8 @@ void printMenu() {
  */
 void printOutro(){
 
-  std::cout << "Thank you for using ground floor.\n"
-            << " You have entered " << " amount of vita" << std::endl;
+  std::cout << "\nThank you for using ground floor.\n"
+            << "Your file has been saved to: " << DATA_FILE << std::endl;
 }
 
 
@@ -134,7 +144,9 @@ void getJob(Vita &vita) {
   readCharArray("Enter the company name: ", company, 256);
   readCharArray("Enter the position held: ", position, 256);
 
+  std::cout << "When did the position begin?\n";
   readDate(start.month, start.day, start.year);
+  std::cout << "When did the position end?\n";
   readDate(end.month, end.day, end.year);
 
   vita.addSumma(company, position, start, end);
