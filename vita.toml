@@ -1,0 +1,36 @@
+name = "Brian O'Grady"
+
+bio = """
+I am a versatile and detail-oriented IT professional with 20 years of experience spanning data 
+center operations, automation engineering, and system administration. Proven ability to 
+streamline infrastructure, automate workflows, and support mission-critical systems. Seeking to 
+leverage hands-on experience and technical expertise in a DevOps Engineer role to drive 
+operational efficiency and system reliability.
+
+"""
+
+skills = [
+  "AWS",
+  "Google Cloud Platform",
+  "Microsoft Azure Cloud",
+  "Jenkins",
+  "GitHub Actions",
+  "Ansible",
+  "Pyton",
+  "bash",
+  "Juggling",
+  "Acrobatics",
+]
+
+[[job]]
+company = "H5 Data Centers"
+position = "Data Center Service Technician"
+start = "02/12/2024"
+end   = "03/19/2026"
+
+[[job]]
+company = "Intel"
+position = "Technician"
+start = "02/02/2023"
+end   = "12/12/2024"
+
