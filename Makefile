@@ -20,6 +20,11 @@ TESTSRC = tests.cpp
 PROJECT = ground_floor_resumebuilder
 VERSION = 1.0
 
+DISTFILES := Makefile \
+						 $(wildcard *.cpp) \
+						 $(wildcard *.h) \
+						 $(wildcard README*)
+
 # ==============================
 # Derived Values (NO EDITING NEEDED)
 # ==============================
@@ -77,7 +82,7 @@ valgrind-tests: $(TESTAPP)
 
 dist:
 	tar -czf $(PROJECT)-$(VERSION).tar.gz \
-		Makefile *.cpp *.h README* 2>/dev/null
+		$(DISTFILES)
 
 # ==============================
 # Vim Helpers
