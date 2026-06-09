@@ -40,6 +40,9 @@ TESTOBJS = $(TESTSRC:.cpp=.o)
 
 all: $(APP)
 
+SETUP: 
+	ifeq (.vim/session.vim)
+
 $(APP): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 

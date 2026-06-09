@@ -9,13 +9,13 @@ struct Date {
   int year;
 };
 
-struct Summa {
-  char *company;
-  char *position;
-  Date startDate;
-  Date endDate;
-  Summa *next;
+struct Node {
+
+  Node* head;
+  Node* tail;
+
 };
+
 
 // The summa should be a linked list of Summa struct nodes
 // The class vita will init the list and summa's
@@ -25,7 +25,9 @@ struct Summa {
 // The biog is a single block of char "text"
 class Vita {
   private:
-    Summa *head;
+    Summa summa;
+
+    Node* node;
 
     int numSkills;
     int skillCap;
